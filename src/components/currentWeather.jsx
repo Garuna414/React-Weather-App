@@ -15,8 +15,8 @@ export default function CurrentWeather({ data }) {
       const [hours, minutes, seconds] = time.split(":");
       const nextTime = new Date(2000, 0, 1, hours, minutes, parseInt(seconds, 10) + 1);
       
-      // Format the updated time as HH:MM:SS
-      const formattedTime = `${nextTime.getHours()}:${String(nextTime.getMinutes()).padStart(2, '0')}:${String(nextTime.getSeconds()).padStart(2, '0')}`;
+      // Format the updated time with leading zeros as needed
+      const formattedTime = `${String(nextTime.getHours()).padStart(2, '0')}:${String(nextTime.getMinutes()).padStart(2, '0')}:${String(nextTime.getSeconds()).padStart(2, '0')}`;
       
       // Update the state with the formatted time
       setTime(formattedTime);
@@ -25,10 +25,6 @@ export default function CurrentWeather({ data }) {
     // Clear the interval when the component is unmounted
     return () => clearInterval(intervalId);
   }, [time]);
-  // Format the time as HH:MM:SS
-  function formatTime(date) {
-    return date.toTimeString().split(" ")[0];
-  }
 
   return (
     <div className="mainContainer">
