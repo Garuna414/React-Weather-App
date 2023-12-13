@@ -1,0 +1,144 @@
+.mainContainer {
+    background-color: #275DAD;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.weather {
+    background-color: #FCF7F8;
+    height: 580px;
+    width: 50vw;
+    margin: 50px;
+    border-radius: 50px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.upper{
+    display: flex;
+    flex-direction: row;
+    height: 55%;
+    width: 100%;
+}
+
+.lower {
+    display: flex;
+    flex-direction: row;
+    height: 45%;
+    width: 100%;
+}
+
+.upperLeft {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    padding: 25px 50px;
+    flex-direction: column;
+    border-top-left-radius: 50px;
+}
+
+.adjacentUpper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.adjacent {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
+.cityName {
+    font-size: 49.44px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.countryName {
+    margin-top: 0;
+    font-size: 30.55px;
+}
+
+.message {
+    font-size: 30.55px;
+    margin-right: 40px;
+    margin-bottom: 0;
+}
+
+.time {
+    font-size: 18.88px;
+    margin-bottom: 0;
+}
+
+.temp{
+    font-size: 80px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.upperRight {
+    height: 100%;
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 50px;
+}
+
+.weatherIcon {
+    height: 200px;
+    width: 200px;
+}
+
+.lowerLeft {
+    height: 100%;
+    width: 45%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-left-radius: 50px;
+}
+
+.lowerRight {
+    height: 100%;
+    width: 55%;
+    padding: 50px 10px;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-right-radius: 50px;
+}
+
+.lowerText {
+    margin-bottom: 0;
+    font-size: 30.55px;
+    margin-right: 20px;
+}
+
+.lowerLeftText {    
+    margin-bottom: 0;
+    font-size: 30.55px;
+    margin-right: 20px;
+    margin-left: 0;
+}
+
+.lowerData {
+    margin-top: 0;
+    font-size: 49.44px;
+}
+
+.lowerMetrics {
+    margin-bottom: 0;
+    font-size: 30.55px;
+    margin-right: 0;
+}
