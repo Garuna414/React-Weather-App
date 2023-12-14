@@ -11,24 +11,24 @@ function App() {
   const handleOnSearchChange = (searchData) => {
     const [lat, lon, id] = searchData.value.split(" ");
     const currentWeatherFetch = fetch(
-      `${weather_api_url}/weather?lat=${lat}&lon=${lon}&appid=${weather_api_key}`
+      `${weather_api_url}/weather?lat=${lat}&lon=${lon}&appid=${weather_api_key}&units=metric`
     );
     const forecastFetch = fetch(
-      `${weather_api_url}/forecast?lat=${lat}&lon=${lon}&appid=${weather_api_key}`
+      `${weather_api_url}/forecast?lat=${lat}&lon=${lon}&appid=${weather_api_key}&units=metric`
     );
 
-    const timeFetch = fetch(
-      `${geo_api_url}/places/${id}/time?name=${searchData}`,
+    const dateTimeFetch = fetch(
+      `${geo_api_url}/cities/${id}/dateTime?name=${searchData}`,
       options
     );
 
-    Promise.all([currentWeatherFetch, forecastFetch, timeFetch])
+    Promise.all([currentWeatherFetch, forecastFetch, dateTimeFetch])
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
-        const timeData = await response[2].json();
+        const dateTimeData = await response[2].json();
 
-        setCurrentWeather({ city: searchData.label, time: timeData.data, ...weatherResponse });
+        setCurrentWeather({ city: searchData.label, dateTime: dateTimeData.data, ...weatherResponse });
         setForecast({ city: searchData.label, ...forecastResponse });
       })
       .catch((err) => console.log(err));
