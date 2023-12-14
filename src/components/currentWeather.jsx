@@ -1,30 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/currentWeather.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function CurrentWeather({ data }) {
   const [city, country] = data.city.split(",");
   const description = data.weather[0].description;
-  // const rawTimeFromApi = data.dateTime;
+  const rawTimeFromApi = data.dateTime;
 
-  // const fullDateTimeFromApi = new Date(data.dateTime.slice(0, 19));
-
-  const dateTimeFromApi = new Date(data.dateTime.slice(0, 19) + 'Z'); // Append 'Z' to indicate UTC
+  const dateTimeFromApi = new Date(rawTimeFromApi.slice(0, 19) + "Z");
   const [dateTime, setDateTime] = useState(dateTimeFromApi);
-  
+  const [formattedDateTime, setFormattedDateTime] = useState(
+    formatDateTime(dateTimeFromApi)
+  );
+
+  const latestDateTimeRef = useRef(dateTimeFromApi);
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      // Increment the time by 1 second
-      const nextDateTime = new Date(dateTime.getTime() + 1000);
+    // Update dateTimeFromApi and latestDateTimeRef on data update
+    const rawTimeFromApi = data.dateTime;
+    const newDateTimeFromApi = new Date(rawTimeFromApi.slice(0, 19) + "Z");
+    setDateTime(newDateTimeFromApi);
+    latestDateTimeRef.current = newDateTimeFromApi;
+
+    // Clear the timer and set a new one based on new data
+    clearInterval(timerIdRef.current);
+    timerIdRef.current = setInterval(() => {
+      const nextDateTime = new Date(latestDateTimeRef.current.getTime() + 1000);
       setDateTime(nextDateTime);
+      setFormattedDateTime(formatDateTime(nextDateTime));
+      latestDateTimeRef.current = nextDateTime;
     }, 1000);
-  
-    // Clear the interval when the component is unmounted
-    return () => clearInterval(intervalId);
-  }, [dateTime]);
-  
-  const formattedDateTime = dateTime.toISOString().slice(0, 19).replace("T", " ");
-  
+
+    // Return cleanup function to clear the timer on unmount
+    return () => clearInterval(timerIdRef.current);
+  }, [data]);
+
+  const timerIdRef = useRef(null); // Use a separate ref for the timer
+
+  function formatDateTime(date) {
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZone: "UTC",
+    }).format(date);
+  }
 
   return (
     <div className="mainContainer">
@@ -36,16 +60,27 @@ export default function CurrentWeather({ data }) {
               <p className="countryName">{country}</p>
               <div className="adjacentUpper">
                 {/* <p className="message">{description[0].toUpperCase() + description.substring(1)}</p> */}
-                <p className="time">{formattedDateTime.split(" ")[0].split("-").reverse().join("/")}</p>
+                <p className="time">
+                  {formattedDateTime
+                    .split(", ")[0]
+                    .split("-")
+                    .reverse()
+                    .join("/")}
+                </p>
               </div>
               <p className="temp">{Math.round(data.main.temp)}°C</p>
             </div>
           </div>
           <div className="upperRight">
-            <img src={`/icons/${data.weather[0].icon}.png`} alt="" className="weatherIcon" />
-            <p className="message">{formattedDateTime.split(" ")[1].slice(0, 5)}</p>
+            <img
+              src={`/icons/${data.weather[0].icon}.png`}
+              alt=""
+              className="weatherIcon"
+            />
+            <p className="message">
+              {formattedDateTime.split(" ")[1].slice(0, 8)}
+            </p>
             <p className="message">{description.toUpperCase()}</p>
-
           </div>
         </div>
         <div className="lower">
