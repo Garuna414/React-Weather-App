@@ -3,6 +3,8 @@ import CurrentWeather from "./components/currentWeather";
 import React, { useState } from "react";
 import { weather_api_key, weather_api_url } from "./components/api";
 import { geo_api_url, options } from "./components/api";
+import ForecastItem from "./components/forecastItem";
+import "./App.css"
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -28,7 +30,11 @@ function App() {
         const forecastResponse = await response[1].json();
         const dateTimeData = await response[2].json();
 
-        setCurrentWeather({ city: searchData.label, dateTime: dateTimeData.data, ...weatherResponse });
+        setCurrentWeather({
+          city: searchData.label,
+          dateTime: dateTimeData.data,
+          ...weatherResponse,
+        });
         setForecast({ city: searchData.label, ...forecastResponse });
       })
       .catch((err) => console.log(err));
@@ -39,17 +45,16 @@ function App() {
 
   return (
     <div className="main">
-      <div style={{ height: "56px", top: "0", left: "0" }}>
+      <div className="navigation">
         <Navbar onSearchChange={handleOnSearchChange} />
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        {currentWeather && <CurrentWeather data={currentWeather} />}
+      <div className="infoContainer">
+        <div className="weather">
+          {currentWeather && <CurrentWeather data={currentWeather} />}
+        </div>
+        <div className="forecast">
+          {forecast && <ForecastItem data={forecast} />}
+        </div>
       </div>
     </div>
   );

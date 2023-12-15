@@ -1,10 +1,51 @@
 .main {
   display: flex;
   flex-direction: column;
+  overflow-y: hidden ;
 }
 
 .infoBox {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.infoContainer {
+  background-color: #275DAD;
+  height: 100vh;
+  width: 100vw;
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  height: calc(100vh - 56px);
+  overflow: hidden;
+}
+
+.weather {
+  background-color: #FCF7F8;
+  height: 580px;
+  width: 50rem;
+  border-radius: 50px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast {    
+  height: 580px;
+  width: 40rem;
+  background-color: #FCF7F8;
+  border-radius: 50px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);    
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.navigation {
+  height: 56px;
+  top: 0;
+  left: 0;
 }

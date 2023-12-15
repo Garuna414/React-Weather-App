@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/currentWeather.css";
 import "bootstrap/dist/css/bootstrap.css";
+import ForecastItem from "./forecastItem";
 
 export default function CurrentWeather({ data }) {
   const [city, country] = data.city.split(",");
@@ -50,8 +51,9 @@ export default function CurrentWeather({ data }) {
     }).format(date);
   }
 
+
   return (
-    <div className="mainContainer">
+    <div>
       <div className="weather">
         <div className="upper">
           <div className="upperLeft">
@@ -78,7 +80,7 @@ export default function CurrentWeather({ data }) {
               className="weatherIcon"
             />
             <p className="message">
-              {formattedDateTime.split(" ")[1].slice(0, 8)}
+              {formattedDateTime.split(" ")[1].slice(0, 5)}
             </p>
             <p className="message">{description.toUpperCase()}</p>
           </div>
@@ -110,6 +112,25 @@ export default function CurrentWeather({ data }) {
           </div>
         </div>
       </div>
+
+      {/* {forecastData.map((item, idx) => (
+        <div key={idx}>
+          <ForecastItem
+            imgUrl={`/icons/${item.weather[0].icon}.png`} // Use item's icon
+            date={item.dt_txt} // Use formatted date from item
+            message={item.weather[0].description} // Use item's description
+            min={Math.round(item.main.temp_min)} // Use item's min temperature
+            max={Math.round(item.main.temp_max)} // Use item's max temperature
+          />
+        </div>
+      ))} */}
+      {/*
+        <ForecastItem imgUrl = "/icons/01d.png" date = "Saturday" message = "Scattered clouds" min = "30" max = "20"/>
+        <ForecastItem imgUrl = "/icons/01d.png" date = "Saturday" message = "Scattered clouds" min = "30" max = "20"/>
+        <ForecastItem imgUrl = "/icons/01d.png" date = "Saturday" message = "Scattered clouds" min = "30" max = "20"/>
+        <ForecastItem imgUrl = "/icons/01d.png" date = "Saturday" message = "Scattered clouds" min = "30" max = "20"/>
+        <ForecastItem imgUrl = "/icons/01d.png" date = "Saturday" message = "Scattered clouds" min = "30" max = "20"/>
+        <ForecastItem imgUrl = "/icons/01d.png" date = "Saturday" message = "Scattered clouds" min = "30" max = "20"/> */}
     </div>
   );
 }

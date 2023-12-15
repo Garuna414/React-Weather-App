@@ -2,17 +2,19 @@
     background-color: #275DAD;
     height: 100vh;
     width: 100vw;
+    padding: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     overflow-x: hidden;
+    gap: 30px;
 }
+
+
 
 .weather {
     background-color: #FCF7F8;
     height: 580px;
-    width: 55vw;
-    margin: 50px;
+    width: 50rem;
     border-radius: 50px;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
     display: flex;
