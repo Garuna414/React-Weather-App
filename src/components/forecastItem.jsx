@@ -4,7 +4,7 @@ import "../styles/forecastItem.css";
 export default function forecastItem({ data }) {
   console.log(data);
   return (
-    <div>
+    <div className="forecast">
       <p className="cityName">Forecast</p>
       <div className="itemBox">
         {data.list.slice(0, 11).map((item, idx) => {

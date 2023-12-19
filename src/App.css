@@ -1,7 +1,9 @@
 .main {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  overflow-y: hidden ;
+  justify-content: center; */
+  overflow-x: hidden;
+  position: fixed;
 }
 
 .infoBox {
@@ -12,40 +14,55 @@
 
 .infoContainer {
   background-color: #275DAD;
-  height: 100vh;
   width: 100vw;
-  padding: 50px 30px;
+  padding: 3.125rem 1.875rem;
   display: flex;
   flex-direction: row;
-  gap: 30px;
-  height: calc(100vh - 56px);
-  overflow: hidden;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+  /* height: calc(100% - 3.5rem); */
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.weather {
+.weatherContainer {
+  min-height: 31.25rem;
   background-color: #FCF7F8;
-  height: 580px;
+  height: auto;
   width: 50rem;
-  border-radius: 50px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
+  border-radius: 3.125rem;
+  box-shadow: .625rem .625rem .625rem .625rem rgba(0, 0, 0, 0.3); 
+  /* display: flex;
+  flex-direction: column; */
 }
 
-.forecast {    
-  height: 580px;
+.forecastContainer { 
+  min-height: 36.25rem;   
+  height: auto;
   width: 40rem;
   background-color: #FCF7F8;
-  border-radius: 50px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);    
-  padding: 25px 30px;
+  border-radius: 3.125rem;
+  box-shadow: .625rem .625rem .625rem .625rem rgba(0, 0, 0, 0.3);    
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 0.688rem;
 }
 
 .navigation {
-  height: 56px;
+  position: fixed;
+  z-index: 10;
   top: 0;
-  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 900px) {
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+  }
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/currentWeather.css";
 import "bootstrap/dist/css/bootstrap.css";
-import ForecastItem from "./forecastItem";
 
 export default function CurrentWeather({ data }) {
   const [city, country] = data.city.split(",");
@@ -89,25 +88,21 @@ export default function CurrentWeather({ data }) {
           <div className="lowerLeft">
             <div className="adjacent">
               <p className="lowerText">Feels Like</p>
-              <p className="lowerData">{Math.round(data.main.feels_like)}°</p>
-              <p className="lowerMetrics">C</p>
+              <p className="lowerData">{Math.round(data.main.feels_like)}°C</p>
             </div>
             <div className="adjacent">
               <p className="lowerText">Humidity</p>
-              <p className="lowerData">{data.main.humidity}</p>
-              <p className="lowerMetrics">%</p>
+              <p className="lowerData">{data.main.humidity}%</p>
             </div>
           </div>
           <div className="lowerRight">
             <div className="adjacent">
               <p className="lowerLeftText">Wind Speed</p>
-              <p className="lowerData">{Math.round(data.wind.speed)}</p>
-              <p className="lowerMetrics">m/s</p>
+              <p className="lowerData">{Math.round(data.wind.speed)}m/s</p>
             </div>
             <div className="adjacent">
               <p className="lowerLeftText">Pressure</p>
-              <p className="lowerData">{data.main.pressure}</p>
-              <p className="lowerMetrics">hPa</p>
+              <p className="lowerData">{data.main.pressure}hPa</p>
             </div>
           </div>
         </div>

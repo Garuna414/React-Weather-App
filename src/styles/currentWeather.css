@@ -1,22 +1,21 @@
 .mainContainer {
     background-color: #275DAD;
-    height: 100vh;
-    width: 100vw;
-    padding: 30px;
+    height: 100%;
+    max-width: 100vw;
+    padding: 1.875rem;
     display: flex;
     flex-direction: row;
     overflow-x: hidden;
-    gap: 30px;
+    gap: 1.875rem;
 }
-
-
 
 .weather {
     background-color: #FCF7F8;
-    height: 580px;
-    width: 50rem;
-    border-radius: 50px;
-    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+    min-height: 31.25rem;
+    height: auto;
+    max-width: 50rem;
+    border-radius: 3.125rem;
+    box-shadow: .625rem .625rem .625rem .625rem rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
 }
@@ -25,120 +24,167 @@
     display: flex;
     flex-direction: row;
     height: 55%;
-    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
 }
 
 .lower {
     display: flex;
     flex-direction: row;
     height: 45%;
-    width: 100%;
+    max-width: 100%;    
+    justify-content: space-between;
 }
 
 .upperLeft {
     height: 100%;
-    width: 55%;
+    max-width: 55%;
     display: flex;
-    padding: 25px 50px;
+    padding: 1.563rem 3.125rem;
     flex-direction: column;
-    border-top-left-radius: 50px;
+    border-top-left-radius: 3.125rem;
 }
 
-.adjacentUpper {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-}
 
 .adjacent {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .cityName {
-    font-size: 49.44px;
+    font-size: 3.09rem;
     margin-bottom: 0;
     margin-top: 0;
 }
 
 .countryName {
     margin-top: 0;
-    font-size: 30.55px;
+    font-size: 1.909rem;
 }
 
 .message {
-    font-size: 30.55px;
+    font-size: 1.909rem;
     margin-bottom: 0;
 }
 
 .time {
-    font-size: 18.88px;
+    font-size: 1.18rem;
     margin-bottom: 0;
 }
 
 .temp{
-    font-size: 80px;
+    font-size: 5rem;
     margin-bottom: 0;
     margin-top: 0;
 }
 
 .upperRight {
     height: 100%;
-    width: 45%;    
-    padding: 25px 50px;
+    max-width: 45%;    
+    padding: 1.563rem 3.125rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top-right-radius: 50px;
+    border-top-right-radius: 3.125rem;
 }
 
 .weatherIcon {
-    height: 150px;
-    width: 150px;
+    height: 9.375rem;
+    max-width: 9.375rem;
 }
 
 .lowerLeft {
     height: 100%;
-    width: 45%;
-    padding: 50px;
+    max-width: 45%;
+    padding: 3.125rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-bottom-left-radius: 50px;
+    border-bottom-left-radius: 3.125rem;
 }
 
 .lowerRight {
     height: 100%;
-    width: 55%;
-    padding: 50px 10px;    
+    max-width: 55%;
+    padding: 3.125rem 3.125rem;    
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-bottom-right-radius: 50px;
+    border-bottom-right-radius: 3.125rem;
 }
 
 .lowerText {
     margin-bottom: 0;
-    font-size: 30.55px;
-    margin-right: 20px;
+    font-size: 1.909rem;
+    margin-right: 1.25rem;
 }
 
 .lowerLeftText {    
     margin-bottom: 0;
-    font-size: 30.55px;
-    margin-right: 20px;
+    font-size: 1.909rem;
+    margin-right: 1.25rem;
     margin-left: 0;
 }
 
 .lowerData {
     margin-top: 0;
-    font-size: 49.44px;
+    font-size: 3.09rem;
 }
 
 .lowerMetrics {
     margin-bottom: 0;
-    font-size: 30.55px;
+    font-size: 1.909rem;
     margin-right: 0;
 }
+
+@media screen and (max-width: 425px) {
+    .weather {
+        max-width: 22rem;
+        width: auto;
+    }
+
+    .cityName, .countryName, .temp, .message, .time, .weatherIcon, .lowerText, .lowerMetrics, .lowerLeftText {
+        transform: scale(0.8);
+    }
+
+    .time {
+        font-size: 1.5rem;
+    }
+
+    .lowerData {
+        transform: scale(0.6);
+        margin: 0;
+    }
+
+    .lower {
+        flex-direction: column;
+        gap: 0;
+        height: auto;
+        justify-content: center;
+        padding-bottom: 1.5rem;
+    }
+
+    .upperLeft, .upperRight {
+        padding: 1rem;
+    }
+
+    .lowerLeft, .lowerRight {
+        max-width: 22rem;
+        width: auto;
+        padding: 0;
+        margin: 0;
+    }
+
+    .adjacent {
+        height: 3rem;
+        align-items: center;
+        padding: 0 1rem;
+        justify-content: left;
+        gap: 0;
+        width: auto;
+        justify-content: space-between;
+    }
+    
+  } 

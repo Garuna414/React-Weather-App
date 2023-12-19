@@ -1,3 +1,5 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "./components/navbar";
 import CurrentWeather from "./components/currentWeather";
 import React, { useState } from "react";
@@ -49,10 +51,10 @@ function App() {
         <Navbar onSearchChange={handleOnSearchChange} />
       </div>
       <div className="infoContainer">
-        <div className="weather">
+        <div className="weatherContainer">
           {currentWeather && <CurrentWeather data={currentWeather} />}
         </div>
-        <div className="forecast">
+        <div className="forecastContainer">
           {forecast && <ForecastItem data={forecast} />}
         </div>
       </div>
