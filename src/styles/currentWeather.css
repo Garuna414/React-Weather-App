@@ -143,6 +143,10 @@
     .weather {
         max-width: 22rem;
         width: auto;
+        height: auto;
+        min-height: 31.25rem;
+        padding-bottom: 1rem;
+        max-height: unset;
     }
 
     .cityName, .countryName, .temp, .message, .time, .weatherIcon, .lowerText, .lowerMetrics, .lowerLeftText {

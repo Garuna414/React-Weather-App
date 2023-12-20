@@ -1,12 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
 import CurrentWeather from "./components/currentWeather";
 import React, { useState } from "react";
 import { weather_api_key, weather_api_url } from "./components/api";
 import { geo_api_url, options } from "./components/api";
 import ForecastItem from "./components/forecastItem";
-import "./App.css"
+import "./App.css";
+import CurrentForecast from "./components/currentForecast";
+import About from "./components/about";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -42,23 +45,23 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  console.log(currentWeather);
-  console.log(forecast);
+  // console.log(currentWeather);
+  // console.log(forecast);
 
   return (
-    <div className="main">
-      <div className="navigation">
-        <Navbar onSearchChange={handleOnSearchChange} />
-      </div>
-      <div className="infoContainer">
-        <div className="weatherContainer">
-          {currentWeather && <CurrentWeather data={currentWeather} />}
+    <BrowserRouter basename="/React-Weather-App">
+      <div className="main">
+        <div className="navigation">
+          <Navbar onSearchChange={handleOnSearchChange} />
         </div>
-        <div className="forecastContainer">
-          {forecast && <ForecastItem data={forecast} />}
+        <div>
+          <Routes>
+            <Route exact path="/" element={<CurrentForecast  currentData={currentWeather} forecastData={forecast}/>}/>
+            <Route exact path="/about" element={<About />} />
+          </Routes>
         </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

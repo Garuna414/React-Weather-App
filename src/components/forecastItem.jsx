@@ -13,7 +13,7 @@ export default function forecastItem({ data }) {
               <div className="imgDay">
                 <div>
                   <img
-                    src={`/icons/${item.weather[0].icon}.png`}
+                    src={`/React-Weather-App/icons/${item.weather[0].icon}.png`}
                     alt=""
                     className="forecastImg"
                   />

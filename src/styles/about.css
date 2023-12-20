@@ -1,0 +1,17 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.title {
+    color: red;
+}
+
+.description {
+    font-size: 1.563rem;
+    color: greenyellow;
+}

@@ -12,7 +12,7 @@ export default function CurrentWeather({ data }) {
   const timerIdRef = useRef(null);
 
   function formatDateTime(date) {
-    return new Intl.DateTimeFormat("en-US", {
+    return new Intl.DateTimeFormat("en-GB", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
@@ -51,6 +51,7 @@ export default function CurrentWeather({ data }) {
     return () => clearInterval(timerIdRef.current);
   }, [data]);
 
+
   return (
     <div>
       <div className="weather">
@@ -74,7 +75,7 @@ export default function CurrentWeather({ data }) {
           </div>
           <div className="upperRight">
             <img
-              src={`/icons/${data.weather[0].icon}.png`}
+              src={`/React-Weather-App/icons/${data.weather[0].icon}.png`}
               alt=""
               className="weatherIcon"
             />

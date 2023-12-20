@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { options, geo_api_url } from "./api.jsx";
 import "../styles/navbar.css";
+import { NavLink } from "react-router-dom";
+
 
 export default function Navbar({ onSearchChange }) {
   const [search, setSearch] = useState(null);
@@ -35,9 +37,9 @@ export default function Navbar({ onSearchChange }) {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <NavLink className="navbar-brand" to="/">
             WeatherUNA
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -52,14 +54,14 @@ export default function Navbar({ onSearchChange }) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item mx-1">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
-                </a>
+                <NavLink className="nav-link active" aria-current="page" to="/">
+                  Weather
+                </NavLink>
               </li>
               <li className="nav-item mx-1">
-                <a className="nav-link active" href="/about">
+                <NavLink className="nav-link active" to="/about">
                   About
-                </a>
+                </NavLink>
               </li>
             </ul>
             <AsyncPaginate

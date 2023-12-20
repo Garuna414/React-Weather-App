@@ -18,11 +18,9 @@
   padding: 3.125rem 1.875rem;
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
-  margin-top: 3.5rem;
+  gap: 2rem;
   /* height: calc(100% - 3.5rem); */
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .weatherContainer {
@@ -49,11 +47,10 @@
 }
 
 .navigation {
-  position: fixed;
+  position: sticky;
   z-index: 10;
   top: 0;
   width: 100%;
-  height: auto;
 }
 
 @media screen and (max-width: 900px) {
@@ -68,5 +65,12 @@
 
   .weatherContainer {
     min-height: 31.25rem;
+    height: auto;
+    max-height: unset;
+  }
+
+  .infoContainer {    
+    justify-content: center;
+    gap: 3rem;
   }
 }
