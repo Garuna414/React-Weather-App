@@ -5,37 +5,11 @@ import "bootstrap/dist/css/bootstrap.css";
 export default function CurrentWeather({ data }) {
   const [city, country] = data.city.split(",");
   const description = data.weather[0].description;
-  const rawTimeFromApi = data.dateTime;
-
-  const dateTimeFromApi = new Date(rawTimeFromApi.slice(0, 19) + "Z");
-  const [dateTime, setDateTime] = useState(dateTimeFromApi);
-  const [formattedDateTime, setFormattedDateTime] = useState(
-    formatDateTime(dateTimeFromApi)
-  );
-
-  const latestDateTimeRef = useRef(dateTimeFromApi);
-
-  useEffect(() => {
-    // Update dateTimeFromApi and latestDateTimeRef on data update
-    const rawTimeFromApi = data.dateTime;
-    const newDateTimeFromApi = new Date(rawTimeFromApi.slice(0, 19) + "Z");
-    setDateTime(newDateTimeFromApi);
-    latestDateTimeRef.current = newDateTimeFromApi;
-
-    // Clear the timer and set a new one based on new data
-    clearInterval(timerIdRef.current);
-    timerIdRef.current = setInterval(() => {
-      const nextDateTime = new Date(latestDateTimeRef.current.getTime() + 1000);
-      setDateTime(nextDateTime);
-      setFormattedDateTime(formatDateTime(nextDateTime));
-      latestDateTimeRef.current = nextDateTime;
-    }, 1000);
-
-    // Return cleanup function to clear the timer on unmount
-    return () => clearInterval(timerIdRef.current);
-  }, [data]);
-
-  const timerIdRef = useRef(null); // Use a separate ref for the timer
+  const [dateTimeFromApi, setDateTimeFromApi] = useState(null);
+  const [formattedDateTime, setFormattedDateTime] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const latestDateTimeRef = useRef(0);
+  const timerIdRef = useRef(null);
 
   function formatDateTime(date) {
     return new Intl.DateTimeFormat("en-US", {
@@ -50,6 +24,32 @@ export default function CurrentWeather({ data }) {
     }).format(date);
   }
 
+  useEffect(() => {
+    setIsLoading(true);
+  
+    const rawTimeFromApi = data.dateTime;
+    if (rawTimeFromApi) {
+      const newDateTimeFromApi = new Date(rawTimeFromApi.slice(0, 19) + "Z");
+      setDateTimeFromApi(newDateTimeFromApi);
+      latestDateTimeRef.current = newDateTimeFromApi.getTime();
+  
+      // Clear previous interval (if any)
+      clearInterval(timerIdRef.current);
+  
+      const timerId = setInterval(() => {
+        const nextDateTime = new Date(latestDateTimeRef.current + 1000);
+        setDateTimeFromApi(nextDateTime);
+        setFormattedDateTime(formatDateTime(nextDateTime));
+        latestDateTimeRef.current = nextDateTime.getTime();
+      }, 1000);
+  
+      timerIdRef.current = timerId;
+      setIsLoading(false);
+    }
+  
+    // Cleanup previous interval when the component unmounts or when data changes
+    return () => clearInterval(timerIdRef.current);
+  }, [data]);
 
   return (
     <div>
@@ -78,10 +78,14 @@ export default function CurrentWeather({ data }) {
               alt=""
               className="weatherIcon"
             />
-            <p className="message">
-              {formattedDateTime.split(" ")[1].slice(0, 5)}
+            {formattedDateTime && (
+              <p className="message">
+                {formattedDateTime.split(" ")[1].slice(0, 5)}
+              </p>
+            )}
+            <p className="message" style={{ textAlign: "center" }}>
+              {description.toUpperCase()}
             </p>
-            <p className="message">{description.toUpperCase()}</p>
           </div>
         </div>
         <div className="lower">
