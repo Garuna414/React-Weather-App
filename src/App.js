@@ -49,7 +49,7 @@ function App() {
   // console.log(forecast);
 
   return (
-    <BrowserRouter basename="/React-Weather-App">
+    <BrowserRouter /*basename="/React-Weather-App"*/>
       <div className="main">
         <div className="navigation">
           <Navbar onSearchChange={handleOnSearchChange} />

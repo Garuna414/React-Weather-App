@@ -20,7 +20,7 @@
   flex-direction: row;
   gap: 2rem;
   /* height: calc(100% - 3.5rem); */
-  flex-wrap: wrap;
+  /*flex-wrap: wrap;*/
 }
 
 .weatherContainer {
@@ -72,5 +72,6 @@
   .infoContainer {    
     justify-content: center;
     gap: 3rem;
+    flex-wrap: wrap;
   }
 }
