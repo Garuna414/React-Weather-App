@@ -1,6 +1,5 @@
 {
   "name": "weather-app",
-  "homepage": "https://Garuna414.github.io/React-Weather-App",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
