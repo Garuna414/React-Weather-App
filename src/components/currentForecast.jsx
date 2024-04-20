@@ -5,8 +5,8 @@ import "../styles/currentWeather.css";
 import "../styles/forecastItem.css";
 
 export default function currentForecast({ currentData, forecastData}) {
-  console.log(currentData);
-  console.log(forecastData);
+  //console.log(currentData);
+  //console.log(forecastData);
   return (
     <div className="infoContainer">
     <div className="weatherContainer">

@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/forecastItem.css";
 
 export default function forecastItem({ data }) {
-  console.log(data);
+  //console.log(data);
   return (
     <div className="forecast">
       <p className="cityName">Forecast</p>

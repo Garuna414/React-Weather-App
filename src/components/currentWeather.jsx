@@ -3,7 +3,7 @@ import "../styles/currentWeather.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 export default function CurrentWeather({ data }) {
-  const [city, country] = data.city.split(",");
+  const [city, country] = data.city ? data.city.split(",") : ["Navi Mumbai", "India"];
   const description = data.weather[0].description;
   const [dateTimeFromApi, setDateTimeFromApi] = useState(null);
   const [formattedDateTime, setFormattedDateTime] = useState("");
